@@ -1,0 +1,70 @@
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'setlv':
+135	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'setbuf' [-Wimplicit-function-declaration]
+136	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+136	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'printf'
+17	1	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'printf'
+146	4	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'clrscr' [-Wimplicit-function-declaration]
+150	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'scanf' [-Wimplicit-function-declaration]
+150	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'scanf'
+150	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'scanf'
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'help':
+190	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'printf'
+190	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'printf'
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'loading':
+210	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'printf'
+210	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'printf'
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'refresh_map':
+236	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'select' [-Wimplicit-function-declaration]
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	At top level:
+255	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before '{' token
+268	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before '{' token
+284	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before 'for'
+284	34	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected '=', ',', ';', 'asm' or '__attribute__' before '<=' token
+284	43	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before '++' token
+300	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before 'switch'
+319	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] data definition has no type or storage class
+319	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] type defaults to 'int' in declaration of 'line_sum' [-Wimplicit-int]
+319	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] conflicting types for 'line_sum'
+101	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] previous definition of 'line_sum' was here
+319	16	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] invalid initializer
+320	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before 'for'
+320	20	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected '=', ',', ';', 'asm' or '__attribute__' before '<' token
+320	26	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected '=', ',', ';', 'asm' or '__attribute__' before '++' token
+322	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] data definition has no type or storage class
+322	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] type defaults to 'int' in declaration of 'lv' [-Wimplicit-int]
+322	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] redefinition of 'lv'
+107	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] previous definition of 'lv' was here
+322	7	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] initializer element is not constant
+323	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] data definition has no type or storage class
+323	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] type defaults to 'int' in declaration of 't' [-Wimplicit-int]
+323	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] redefinition of 't'
+106	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] previous definition of 't' was here
+323	6	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] initializer element is not constant
+324	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before 'if'
+334	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] data definition has no type or storage class
+334	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] type defaults to 'int' in declaration of 'pau' [-Wimplicit-int]
+334	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] redefinition of 'pau'
+88	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] previous definition of 'pau' was here
+335	1	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected identifier or '(' before '}' token
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'event':
+458	6	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'usleep'; did you mean '_sleep'? [-Wimplicit-function-declaration]
+465	13	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] 'stdin' undeclared (first use in this function)
+465	13	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] 'stdin' is defined in header '<stdio.h>'; did you forget to '#include <stdio.h>'?
+465	13	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] each undeclared identifier is reported only once for each function it appears in
+477	6	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'puts' [-Wimplicit-function-declaration]
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'drawmap':
+607	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+607	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'sprintf'
+607	5	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'sprintf'
+632	3	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'sprintf'
+632	3	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'sprintf'
+637	3	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'sprintf'
+637	3	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'sprintf'
+640	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'sprintf'
+640	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'sprintf'
+C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	In function 'gameover':
+655	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] incompatible implicit declaration of built-in function 'printf'
+655	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] include '<stdio.h>' or provide a declaration of 'printf'
+657	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Warning] implicit declaration of function 'getchar' [-Wimplicit-function-declaration]
+657	2	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Note] 'getchar' is defined in header '<stdio.h>'; did you forget to '#include <stdio.h>'?
+672	9	C:\Users\pc\Documents\Projects\项目3\俄罗斯方块-QAIU-v1.5.5.c	[Error] expected expression before ',' token
