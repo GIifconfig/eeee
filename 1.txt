@@ -1,0 +1,2433 @@
+好的，我来为您生成一份详细的项目报告：
+
+# Android 多功能传感器与相机应用开发报告
+
+## 1. 项目概述
+
+### 1.1 基本信息
+- 开发者：GIifconfig
+- 开发时间：2025-04-10
+- 项目类型：Android 原生应用
+- 目标平台：Android 5.0及以上设备
+
+### 1.2 功能需求
+1. 相机功能：
+   - 前后摄像头同时预览
+   - 独立拍照功能
+   - 变焦控制
+   - 闪光灯控制
+   - 照片自动保存
+
+2. 传感器功能：
+   - 加速度传感器数据采集
+   - 位置信息获取
+   - WiFi扫描
+   - 蓝牙设备扫描
+
+3. 系统功能：
+   - 振动控制
+   - 屏幕亮度调节
+   - 音频录制和播放
+   - 系统信息获取
+
+## 2. 技术架构
+
+### 2.1 架构设计
+采用Handler模式的分模块设计：
+```
+com.example.aabbg/
+├── MainActivity.java（主活动）
+├── handlers/
+│   ├── CameraHandler.java（相机控制）
+│   ├── LocationHandler.java（位置服务）
+│   ├── SensorHandler.java（传感器）
+│   ├── WifiHandler.java（WiFi扫描）
+│   └── BluetoothHandler.java（蓝牙）
+└── utils/
+    └── PermissionUtil.java（权限管理）
+```
+
+### 2.2 核心模块实现原理
+
+1. 相机模块（CameraHandler）：
+   - 使用Camera2 API
+   - 支持并发管理多个相机会话
+   - 实现ImageReader处理图像数据
+   - 使用HandlerThread处理后台任务
+
+2. 传感器模块（SensorHandler）：
+   - 采用低通滤波算法处理传感器数据
+   - 使用SensorManager管理传感器
+   - 实现实时数据更新
+
+3. 存储模块：
+   - 使用外部存储目录
+   - 实现异步文件写入
+   - 自动文件命名和分类
+
+## 3. UI设计
+
+### 3.1 布局风格
+- 采用Material Design设计理念
+- 使用ScrollView作为根布局
+- 线性布局（LinearLayout）组织界面元素
+- 网格布局展示相机预览
+
+### 3.2 界面组件
+1. 相机预览区：
+   - 双SurfaceView并排展示
+   - 16:9宽高比
+   - 自适应屏幕宽度
+
+2. 控制区域：
+   - 按钮使用水平排列
+   - 输入框采用MaterialEditText风格
+   - 状态信息使用TextView展示
+
+## 4. 性能要求
+
+### 4.1 硬件要求
+- 处理器：至少四核1.5GHz
+- 内存：最小2GB RAM
+- 存储空间：应用本身10MB，数据存储视使用情况而定
+- 相机：支持Camera2 API
+- 传感器：加速度计必需
+
+### 4.2 系统要求
+- Android版本：5.0 (API 21)及以上
+- 相机权限
+- 存储权限
+- 位置权限
+- 传感器权限
+- 网络权限
+
+### 4.3 性能优化
+1. 内存管理：
+   - 使用WeakReference避免内存泄漏
+   - 及时释放相机资源
+   - 图片压缩处理
+
+2. 电池优化：
+   - 传感器采样率优化
+   - 后台任务管理
+   - WiFi扫描间隔控制
+
+## 5. 权限管理
+
+### 5.1 必需权限
+```xml
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+<uses-permission android:name="android.permission.VIBRATE"/>
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+```
+
+### 5.2 权限处理策略
+1. 运行时权限请求
+2. 权限组合检查
+3. 权限状态持久化
+4. 拒绝处理机制
+
+## 6. 已知问题和优化建议
+
+### 6.1 待优化项目
+1. 相机模块：
+   - 优化相机切换逻辑
+   - 改进闪光灯控制
+   - 增加图像防抖功能
+
+2. 传感器数据：
+   - 改进数据平滑算法
+   - 添加数据持久化
+   - 优化采样频率
+
+3. 用户界面：
+   - 添加夜间模式
+   - 优化控件布局
+   - 增加手势操作
+
+### 6.2 性能优化建议
+1. 内存优化：
+   - 实现图片缓存机制
+   - 优化后台服务
+   - 控制并发操作
+
+2. 电池优化：
+   - 实现休眠模式
+   - 优化定位频率
+   - 改进传感器使用
+
+## 7. 维护建议
+
+1. 代码管理：
+   - 使用Git版本控制
+   - 遵循命名规范
+   - 保持代码注释更新
+
+2. 测试建议：
+   - 添加单元测试
+   - 进行性能测试
+   - 兼容性测试
+
+3. 文档维护：
+   - 更新API文档
+   - 记录修改日志
+   - 维护使用手册
+
+此报告可作为后续开发和优化的参考依据。如需进一步的技术细节或具体实现方案，可以基于此框架进行深入讨论。
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 摄像头预览布局 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <SurfaceView
+                android:id="@+id/surfaceViewFront"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp" />
+
+            <SurfaceView
+                android:id="@+id/surfaceViewBack"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- 摄像头控制按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnStartBothCameras"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="启动双摄" />
+
+            <Button
+                android:id="@+id/btnTakePhotoFront"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="前摄拍照" />
+
+            <Button
+                android:id="@+id/btnTakePhotoBack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="后摄拍照" />
+
+            <Button
+                android:id="@+id/btnTakeBothPhotos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="双摄拍照" />
+        </LinearLayout>
+
+        <!-- 前摄像头变焦控制 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="前摄像头变焦"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/frontZoomInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:hint="输入变焦倍数"/>
+
+            <Button
+                android:id="@+id/btnSetFrontZoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置变焦"/>
+        </LinearLayout>
+
+        <!-- 后摄像头变焦控制 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="后摄像头变焦"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/backZoomInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:hint="输入变焦倍数"/>
+
+            <Button
+                android:id="@+id/btnSetBackZoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置变焦"/>
+
+            <Button
+                android:id="@+id/btnFlash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="闪光灯"/>
+        </LinearLayout>
+
+        <!-- 振动控制 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="振动控制"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/vibrateInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:hint="输入振动强度"/>
+
+            <Button
+                android:id="@+id/btnVibrateToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始振动"/>
+        </LinearLayout>
+
+        <!-- 亮度控制 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="亮度控制"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/brightnessInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:hint="输入亮度值(0-255)"/>
+
+            <Button
+                android:id="@+id/btnSetBrightness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置亮度"/>
+        </LinearLayout>
+
+        <!-- 录音控制 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnStartRecord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="开始录音" />
+
+            <Button
+                android:id="@+id/btnStopRecord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="停止录音" />
+
+            <Button
+                android:id="@+id/btnPlayRecord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="播放录音" />
+        </LinearLayout>
+
+        <!-- 录音状态 -->
+        <TextView
+            android:id="@+id/txtRecordStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="录音状态：未开始" />
+
+        <!-- 系统信息部分 -->
+        <Button
+            android:id="@+id/btnRefreshInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="刷新系统信息" />
+
+        <TextView
+            android:id="@+id/txtSystemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="点击按钮获取系统信息" />
+
+        <!-- 位置信息 -->
+        <Button
+            android:id="@+id/btnGetLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取位置信息" />
+
+        <TextView
+            android:id="@+id/txtLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="点击按钮获取位置信息" />
+
+        <!-- 传感器数据显示 -->
+        <TextView
+            android:id="@+id/txtSensorData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="传感器数据将自动更新" />
+
+        <!-- WIFI扫描 -->
+        <Button
+            android:id="@+id/btnWifiScan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="扫描WIFI" />
+
+        <TextView
+            android:id="@+id/txtWifiResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="点击按钮扫描WIFI" />
+
+        <!-- 蓝牙扫描 -->
+        <Button
+            android:id="@+id/btnBluetoothScan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="扫描蓝牙设备" />
+
+        <TextView
+            android:id="@+id/txtBluetoothResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="点击按钮扫描蓝牙设备" />
+
+    </LinearLayout>
+</ScrollView>
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aabbg">
+    
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" android:required="true" />
+<uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/MainActivity.java
+package com.example.aabbg;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.aabbg.handlers.*;
+import com.example.aabbg.utils.PermissionUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class MainActivity extends Activity implements SurfaceHolder.Callback {
+    private TextView txtLocation;
+    private TextView txtSystemInfo;
+    private TextView txtSensorData;
+    private TextView txtWifiResults;
+    private TextView txtBluetoothResults;
+    private TextView txtRecordStatus;
+    private SurfaceView surfaceViewFront;
+    private SurfaceView surfaceViewBack;
+    private EditText vibrateInput;
+    private EditText brightnessInput;
+    private EditText frontZoomInput;
+    private EditText backZoomInput;
+    private Button btnVibrateToggle;
+
+    private LocationHandler locationHandler;
+    private SensorHandler sensorHandler;
+    private WifiHandler wifiHandler;
+    private BluetoothHandler bluetoothHandler;
+    private CameraHandler cameraHandler;
+
+    private MediaRecorder mediaRecorder;
+    private MediaPlayer mediaPlayer;
+    private String audioFilePath;
+    private boolean isRecording = false;
+    private Vibrator vibrator;
+    private boolean isVibrating = false;
+
+    private static final String SAVE_PATH = "/storage/emulated/0/11/";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        createSaveDirectory();
+
+        if (PermissionUtil.checkPermissions(this)) {
+            initViews();
+            initHandlers();
+            setupAudioPath();
+        }
+    }
+
+    private void createSaveDirectory() {
+        File directory = new File(SAVE_PATH);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    }
+
+    private void startVibrating(long intensity) {
+        if (vibrator != null && !isVibrating) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(
+                    new long[]{0, intensity}, 
+                    new int[]{0, VibrationEffect.DEFAULT_AMPLITUDE},
+                    0)); // 0 means repeat indefinitely
+            } else {
+                vibrator.vibrate(new long[]{0, intensity}, 0);
+            }
+            isVibrating = true;
+            btnVibrateToggle.setText("停止振动");
+        }
+    }
+
+    private void stopVibrating() {
+        if (vibrator != null && isVibrating) {
+            vibrator.cancel();
+            isVibrating = false;
+            btnVibrateToggle.setText("开始振动");
+        }
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        cameraHandler.releaseCamera();
+    }
+
+    private void initViews() {
+        txtLocation = findViewById(R.id.txtLocation);
+        txtSystemInfo = findViewById(R.id.txtSystemInfo);
+        txtSensorData = findViewById(R.id.txtSensorData);
+        txtWifiResults = findViewById(R.id.txtWifiResults);
+        txtBluetoothResults = findViewById(R.id.txtBluetoothResults);
+        txtRecordStatus = findViewById(R.id.txtRecordStatus);
+        surfaceViewFront = findViewById(R.id.surfaceViewFront);
+        surfaceViewBack = findViewById(R.id.surfaceViewBack);
+        
+        vibrateInput = findViewById(R.id.vibrateInput);
+        brightnessInput = findViewById(R.id.brightnessInput);
+        frontZoomInput = findViewById(R.id.frontZoomInput);
+        backZoomInput = findViewById(R.id.backZoomInput);
+        btnVibrateToggle = findViewById(R.id.btnVibrateToggle);
+
+        surfaceViewFront.getHolder().addCallback(this);
+        surfaceViewBack.getHolder().addCallback(this);
+
+        // 振动控制
+        btnVibrateToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isVibrating) {
+                    try {
+                        long intensity = Long.parseLong(vibrateInput.getText().toString());
+                        startVibrating(intensity);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(MainActivity.this, "请输入有效的振动强度", 
+                            Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    stopVibrating();
+                }
+            }
+        });
+
+        // 亮度控制
+        findViewById(R.id.btnSetBrightness).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    int brightness = Integer.parseInt(brightnessInput.getText().toString());
+                    setScreenBrightness(brightness);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "请输入有效的亮度值(0-255)", 
+                        Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // 前摄像头变焦
+        findViewById(R.id.btnSetFrontZoom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    float zoom = Float.parseFloat(frontZoomInput.getText().toString());
+                    cameraHandler.setFrontZoom(zoom);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "请输入有效的变焦倍数", 
+                        Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // 后摄像头变焦
+        findViewById(R.id.btnSetBackZoom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    float zoom = Float.parseFloat(backZoomInput.getText().toString());
+                    cameraHandler.setBackZoom(zoom);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "请输入有效的变焦倍数", 
+                        Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // 相机控制
+        findViewById(R.id.btnStartBothCameras).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraHandler.startBothCameras(surfaceViewFront.getHolder(), 
+                    surfaceViewBack.getHolder());
+            }
+        });
+
+        findViewById(R.id.btnTakePhotoFront).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraHandler.takeFrontPhoto();
+            }
+        });
+
+        findViewById(R.id.btnTakePhotoBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraHandler.takeBackPhoto();
+            }
+        });
+
+        findViewById(R.id.btnTakeBothPhotos).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraHandler.takeBothPhotos();
+            }
+        });
+
+        findViewById(R.id.btnFlash).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraHandler.toggleFlash();
+            }
+        });
+
+        findViewById(R.id.btnStartRecord).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startRecording();
+            }
+        });
+
+        findViewById(R.id.btnStopRecord).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopRecording();
+            }
+        });
+
+        findViewById(R.id.btnPlayRecord).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playRecording();
+            }
+        });
+
+        findViewById(R.id.btnGetLocation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                locationHandler.startLocationUpdates();
+            }
+        });
+
+        findViewById(R.id.btnWifiScan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wifiHandler.startWifiScan();
+            }
+        });
+
+        findViewById(R.id.btnBluetoothScan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bluetoothHandler.startBluetoothScan();
+            }
+        });
+
+        findViewById(R.id.btnRefreshInfo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshSystemInfo();
+            }
+        });
+    }
+
+    private void initHandlers() {
+        locationHandler = new LocationHandler(this, txtLocation);
+        sensorHandler = new SensorHandler(this, txtSensorData);
+        wifiHandler = new WifiHandler(this, txtWifiResults);
+        bluetoothHandler = new BluetoothHandler(this, txtBluetoothResults);
+        cameraHandler = new CameraHandler(this);
+    }
+
+    private void setupAudioPath() {
+        audioFilePath = SAVE_PATH + "record_" + getCurrentTimeString() + ".mp3";
+    }
+
+    private void refreshSystemInfo() {
+        StringBuilder info = new StringBuilder();
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
+        try {
+            info.append("===== 系统信息 =====\n");
+            info.append("制造商: ").append(android.os.Build.MANUFACTURER).append("\n");
+            info.append("型号: ").append(android.os.Build.MODEL).append("\n");
+            info.append("Android版本: ").append(android.os.Build.VERSION.RELEASE).append("\n");
+            info.append("API级别: ").append(android.os.Build.VERSION.SDK_INT).append("\n\n");
+
+            info.append("===== 网络信息 =====\n");
+            if (tm != null) {
+                if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                    info.append("运营商: ").append(tm.getNetworkOperatorName()).append("\n");
+                    info.append("网络类型: ").append(getNetworkType(tm.getNetworkType())).append("\n");
+                    info.append("SIM卡状态: ").append(getSimState(tm.getSimState())).append("\n");
+                } else {
+                    info.append("需要READ_PHONE_STATE权限\n");
+                }
+            }
+
+            txtSystemInfo.setText(info.toString());
+        } catch (SecurityException e) {
+            Toast.makeText(this, "需要系统权限", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String getNetworkType(int type) {
+        switch (type) {
+            case TelephonyManager.NETWORK_TYPE_GPRS:
+            case TelephonyManager.NETWORK_TYPE_EDGE:
+            case TelephonyManager.NETWORK_TYPE_CDMA:
+            case TelephonyManager.NETWORK_TYPE_1xRTT:
+            case TelephonyManager.NETWORK_TYPE_IDEN:
+                return "2G";
+            case TelephonyManager.NETWORK_TYPE_UMTS:
+            case TelephonyManager.NETWORK_TYPE_EVDO_0:
+            case TelephonyManager.NETWORK_TYPE_EVDO_A:
+            case TelephonyManager.NETWORK_TYPE_HSDPA:
+            case TelephonyManager.NETWORK_TYPE_HSUPA:
+            case TelephonyManager.NETWORK_TYPE_HSPA:
+            case TelephonyManager.NETWORK_TYPE_EVDO_B:
+            case TelephonyManager.NETWORK_TYPE_EHRPD:
+            case TelephonyManager.NETWORK_TYPE_HSPAP:
+                return "3G";
+            case TelephonyManager.NETWORK_TYPE_LTE:
+                return "4G";
+            case 20:  // TelephonyManager.NETWORK_TYPE_NR
+                return "5G";
+            default:
+                return "未知";
+        }
+    }
+
+    private String getSimState(int state) {
+        switch (state) {
+            case TelephonyManager.SIM_STATE_ABSENT:
+                return "无SIM卡";
+            case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
+                return "需要网络PIN解锁";
+            case TelephonyManager.SIM_STATE_PIN_REQUIRED:
+                return "需要SIM卡PIN解锁";
+            case TelephonyManager.SIM_STATE_PUK_REQUIRED:
+                return "需要SIM卡PUK解锁";
+            case TelephonyManager.SIM_STATE_READY:
+                return "就绪";
+            case TelephonyManager.SIM_STATE_UNKNOWN:
+                return "未知状态";
+            default:
+                return "状态码: " + state;
+        }
+    }
+
+    private void startRecording() {
+        if (isRecording) {
+            Toast.makeText(this, "正在录音中", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            mediaRecorder = new MediaRecorder();
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            mediaRecorder.setOutputFile(audioFilePath);
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+            
+            isRecording = true;
+            txtRecordStatus.setText("录音中...");
+            Toast.makeText(this, "开始录音", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, "录音失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void stopRecording() {
+        if (!isRecording) {
+            return;
+        }
+
+        try {
+            mediaRecorder.stop();
+            mediaRecorder.release();
+            mediaRecorder = null;
+            isRecording = false;
+            txtRecordStatus.setText("录音已保存: " + audioFilePath);
+            Toast.makeText(this, "录音已保存", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "停止录音失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void playRecording() {
+        if (isRecording) {
+            Toast.makeText(this, "请先停止录音", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setDataSource(audioFilePath);
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+            
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                    Toast.makeText(MainActivity.this, "播放完成", Toast.LENGTH_SHORT).show();
+                }
+            });
+            
+            txtRecordStatus.setText("正在播放录音...");
+        } catch (IOException e) {
+            Toast.makeText(this, "播放失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    private String getCurrentTimeString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
+    private void setScreenBrightness(int brightness) {
+        if (!Settings.System.canWrite(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            Toast.makeText(this, "请开启修改系统设置权限", Toast.LENGTH_LONG).show();
+            startActivity(intent);
+            return;
+        }
+
+        try {
+            brightness = Math.max(0, Math.min(255, brightness));
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS, brightness);
+            
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            params.screenBrightness = brightness / 255f;
+            getWindow().setAttributes(params);
+        } catch (Exception e) {
+            Toast.makeText(this, "设置亮度失败: " + e.getMessage(), 
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (PermissionUtil.hasPermissions(this)) {
+            sensorHandler.startSensorMonitoring();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorHandler.stopSensorMonitoring();
+        if (isRecording) {
+            stopRecording();
+        }
+        stopVibrating();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        locationHandler.stopLocationUpdates();
+        wifiHandler.stopWifiScan();
+        bluetoothHandler.stopBluetoothScan();
+        cameraHandler.releaseCamera();
+        
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        
+        stopVibrating();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PermissionUtil.PERMISSION_REQUEST_CODE) {
+            if (PermissionUtil.isAllPermissionsGranted(grantResults)) {
+                initViews();
+                initHandlers();
+                setupAudioPath();
+            } else {
+                Toast.makeText(this, "需要相关权限才能正常运行", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
+    }
+}
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/utils/PermissionUtil.java
+package com.example.aabbg.utils;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PermissionUtil {
+    public static final int PERMISSION_REQUEST_CODE = 1000;
+
+    private static final String[] REQUIRED_PERMISSIONS = new String[] {
+        Manifest.permission.CAMERA,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.ACCESS_WIFI_STATE,
+        Manifest.permission.CHANGE_WIFI_STATE,
+        Manifest.permission.BLUETOOTH,
+        Manifest.permission.BLUETOOTH_ADMIN,
+        Manifest.permission.READ_PHONE_STATE
+    };
+
+    private static final String[] BLUETOOTH_PERMISSIONS = new String[] {
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.BLUETOOTH_CONNECT"
+    };
+
+    public static boolean checkPermissions(Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+
+        List<String> permissionsNeeded = new ArrayList<>();
+        
+        for (String permission : REQUIRED_PERMISSIONS) {
+            if (activity.checkSelfPermission(permission) 
+                != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(permission);
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= 31) {
+            for (String permission : BLUETOOTH_PERMISSIONS) {
+                if (activity.checkSelfPermission(permission) 
+                    != PackageManager.PERMISSION_GRANTED) {
+                    permissionsNeeded.add(permission);
+                }
+            }
+        }
+
+        if (!permissionsNeeded.isEmpty()) {
+            activity.requestPermissions(
+                permissionsNeeded.toArray(new String[0]),
+                PERMISSION_REQUEST_CODE
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean hasPermissions(Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+
+        for (String permission : REQUIRED_PERMISSIONS) {
+            if (activity.checkSelfPermission(permission) 
+                != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= 31) {
+            for (String permission : BLUETOOTH_PERMISSIONS) {
+                if (activity.checkSelfPermission(permission) 
+                    != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isAllPermissionsGranted(int[] grantResults) {
+        if (grantResults == null || grantResults.length == 0) {
+            return false;
+        }
+        
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/handlers/CameraHandler.java
+package com.example.aabbg.handlers;
+
+import android.content.Context;
+import android.graphics.ImageFormat;
+import android.graphics.Rect;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCaptureSession;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraDevice;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CaptureFailure;
+import android.hardware.camera2.CaptureRequest;
+import android.hardware.camera2.CaptureResult;
+import android.hardware.camera2.TotalCaptureResult;
+import android.media.Image;
+import android.media.ImageReader;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.util.Log;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+
+public class CameraHandler {
+    private static final String TAG = "CameraHandler";
+    private Context context;
+    private CameraManager cameraManager;
+    private String frontCameraId;
+    private String backCameraId;
+    private CameraDevice frontCamera;
+    private CameraDevice backCamera;
+    private CameraCaptureSession frontSession;
+    private CameraCaptureSession backSession;
+    private ImageReader frontImageReader;
+    private ImageReader backImageReader;
+    private HandlerThread backgroundThread;
+    private Handler backgroundHandler;
+    private boolean isFlashOn = false;
+    
+    private float frontCurrentZoom = 1.0f;
+    private float backCurrentZoom = 1.0f;
+    private float frontMaxZoom = 1.0f;
+    private float backMaxZoom = 1.0f;
+    private Rect frontSensorSize;
+    private Rect backSensorSize;
+    private Surface frontPreviewSurface;
+    private Surface backPreviewSurface;
+    private boolean hasFlash = false;
+    
+    private static final int IMAGE_WIDTH = 1920;
+    private static final int IMAGE_HEIGHT = 1080;
+    private static final String SAVE_PATH = "/storage/emulated/0/11/";
+    private final Semaphore cameraOpenCloseLock = new Semaphore(1);
+
+    private boolean isCameraInitialized = false;
+    private SurfaceHolder cachedFrontHolder;
+    private SurfaceHolder cachedBackHolder;
+
+    private CaptureRequest.Builder backPreviewBuilder;
+    private CaptureRequest mPreviewRequest;
+
+    public CameraHandler(Context context) {
+        this.context = context;
+        this.cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+        createSaveDirectory();
+        startBackgroundThread();
+        findCameraIds();
+        setupImageReaders();
+    }
+
+    private void findCameraIds() {
+        try {
+            String[] cameraIds = cameraManager.getCameraIdList();
+            for (String cameraId : cameraIds) {
+                CameraCharacteristics characteristics = 
+                    cameraManager.getCameraCharacteristics(cameraId);
+                Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if (facing != null) {
+                    if (facing == CameraCharacteristics.LENS_FACING_FRONT) {
+                        frontCameraId = cameraId;
+                    } else if (facing == CameraCharacteristics.LENS_FACING_BACK) {
+                        backCameraId = cameraId;
+                        Boolean flashAvailable = characteristics.get(
+                            CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                        hasFlash = flashAvailable != null && flashAvailable;
+                    }
+                }
+            }
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "查找相机ID失败", e);
+        }
+    }
+
+    private void setupImageReaders() {
+        frontImageReader = ImageReader.newInstance(IMAGE_WIDTH, IMAGE_HEIGHT, 
+            ImageFormat.JPEG, 2);
+        backImageReader = ImageReader.newInstance(IMAGE_WIDTH, IMAGE_HEIGHT, 
+            ImageFormat.JPEG, 2);
+
+        ImageReader.OnImageAvailableListener imageListener = new ImageReader.OnImageAvailableListener() {
+            @Override
+            public void onImageAvailable(ImageReader reader) {
+                final Image image = reader.acquireNextImage();
+                if (image != null) {
+                    backgroundHandler.post(new ImageSaver(image, reader == frontImageReader));
+                }
+            }
+        };
+
+        frontImageReader.setOnImageAvailableListener(imageListener, backgroundHandler);
+        backImageReader.setOnImageAvailableListener(imageListener, backgroundHandler);
+    }
+
+    private class ImageSaver implements Runnable {
+        private final Image image;
+        private final boolean isFront;
+
+        ImageSaver(Image image, boolean isFront) {
+            this.image = image;
+            this.isFront = isFront;
+        }
+
+        @Override
+        public void run() {
+            if (image == null) return;
+            
+            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+            byte[] bytes = new byte[buffer.capacity()];
+            buffer.get(bytes);
+            save(bytes, isFront);
+            image.close();
+        }
+    }
+
+    private void createSaveDirectory() {
+        File directory = new File(SAVE_PATH);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    }
+
+    private void startBackgroundThread() {
+        backgroundThread = new HandlerThread("CameraBackground");
+        backgroundThread.start();
+        backgroundHandler = new Handler(backgroundThread.getLooper());
+    }
+
+    private void stopBackgroundThread() {
+        if (backgroundThread != null) {
+            backgroundThread.quitSafely();
+            try {
+                backgroundThread.join();
+                backgroundThread = null;
+                backgroundHandler = null;
+            } catch (InterruptedException e) {
+                Log.e(TAG, "停止后台线程失败", e);
+            }
+        }
+    }
+
+    public void startBothCameras(final SurfaceHolder frontHolder, final SurfaceHolder backHolder) {
+        cachedFrontHolder = frontHolder;
+        cachedBackHolder = backHolder;
+        initializeCameras();
+    }
+
+    private void initializeCameras() {
+        if (isCameraInitialized) {
+            releaseCamera();
+        }
+
+        try {
+            if (frontCameraId != null && cachedFrontHolder != null) {
+                frontPreviewSurface = cachedFrontHolder.getSurface();
+                CameraCharacteristics characteristics = 
+                    cameraManager.getCameraCharacteristics(frontCameraId);
+                frontSensorSize = characteristics.get(
+                    CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
+                Float maxZoom = characteristics.get(
+                    CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
+                if (maxZoom != null) {
+                    frontMaxZoom = maxZoom;
+                }
+                setupCamera(frontCameraId, cachedFrontHolder, true);
+            }
+            
+            if (backCameraId != null && cachedBackHolder != null) {
+                backPreviewSurface = cachedBackHolder.getSurface();
+                CameraCharacteristics characteristics = 
+                    cameraManager.getCameraCharacteristics(backCameraId);
+                backSensorSize = characteristics.get(
+                    CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
+                Float maxZoom = characteristics.get(
+                    CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
+                if (maxZoom != null) {
+                    backMaxZoom = maxZoom;
+                }
+                setupCamera(backCameraId, cachedBackHolder, false);
+            }
+
+            isCameraInitialized = true;
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "初始化相机失败", e);
+            Toast.makeText(context, "相机初始化失败: " + e.getMessage(), 
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setupCamera(final String cameraId, final SurfaceHolder holder, 
+            final boolean isFront) {
+        try {
+            if (!cameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
+                throw new RuntimeException("相机打开超时");
+            }
+
+            cameraManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+                @Override
+                public void onOpened(CameraDevice camera) {
+                    cameraOpenCloseLock.release();
+                    if (isFront) {
+                        frontCamera = camera;
+                    } else {
+                        backCamera = camera;
+                    }
+                    createCameraPreviewSession(camera, holder, isFront);
+                }
+
+                @Override
+                public void onDisconnected(CameraDevice camera) {
+                    cameraOpenCloseLock.release();
+                    camera.close();
+                    if (isFront) {
+                        frontCamera = null;
+                    } else {
+                        backCamera = null;
+                    }
+                }
+
+                @Override
+                public void onError(CameraDevice camera, int error) {
+                    cameraOpenCloseLock.release();
+                    camera.close();
+                    if (isFront) {
+                        frontCamera = null;
+                    } else {
+                        backCamera = null;
+                    }
+                    String errorMsg = "相机错误: ";
+                    switch (error) {
+                        case ERROR_CAMERA_DEVICE:
+                            errorMsg += "设备错误";
+                            break;
+                        case ERROR_CAMERA_DISABLED:
+                            errorMsg += "设备被禁用";
+                            break;
+                        case ERROR_CAMERA_IN_USE:
+                            errorMsg += "设备正在使用";
+                            break;
+                        case ERROR_CAMERA_SERVICE:
+                            errorMsg += "服务错误";
+                            break;
+                        case ERROR_MAX_CAMERAS_IN_USE:
+                            errorMsg += "达到最大相机使用数";
+                            break;
+                        default:
+                            errorMsg += "未知错误: " + error;
+                    }
+                    Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show();
+                }
+            }, backgroundHandler);
+        } catch (CameraAccessException | InterruptedException | SecurityException e) {
+            Log.e(TAG, "设置相机失败", e);
+            cameraOpenCloseLock.release();
+            Toast.makeText(context, "相机访问错误: " + e.getMessage(), 
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createCameraPreviewSession(final CameraDevice camera, SurfaceHolder holder, 
+            final boolean isFront) {
+        try {
+            final Surface previewSurface = holder.getSurface();
+            List<Surface> surfaces = new ArrayList<>();
+            surfaces.add(previewSurface);
+            
+            final ImageReader imageReader = isFront ? frontImageReader : backImageReader;
+            surfaces.add(imageReader.getSurface());
+
+            final CaptureRequest.Builder previewRequestBuilder = 
+                camera.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            previewRequestBuilder.addTarget(previewSurface);
+
+            if (!isFront) {
+                backPreviewBuilder = previewRequestBuilder;
+                if (hasFlash && isFlashOn) {
+                    backPreviewBuilder.set(CaptureRequest.FLASH_MODE, 
+                        CaptureRequest.FLASH_MODE_TORCH);
+                }
+            }
+
+            camera.createCaptureSession(surfaces, new CameraCaptureSession.StateCallback() {
+                @Override
+                public void onConfigured(CameraCaptureSession session) {
+                    try {
+                        if (isFront) {
+                            frontSession = session;
+                        } else {
+                            backSession = session;
+                        }
+
+                        previewRequestBuilder.set(CaptureRequest.CONTROL_MODE,
+                            CaptureRequest.CONTROL_MODE_AUTO);
+                        
+                        final Rect sensorSize = isFront ? frontSensorSize : backSensorSize;
+                        final float currentZoom = isFront ? frontCurrentZoom : backCurrentZoom;
+                        
+                        if (sensorSize != null) {
+                            previewRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION,
+                                getZoomRect(sensorSize, currentZoom));
+                        }
+                        
+                        mPreviewRequest = previewRequestBuilder.build();
+                        session.setRepeatingRequest(mPreviewRequest, null, backgroundHandler);
+                    } catch (CameraAccessException e) {
+                        Log.e(TAG, "设置预览失败", e);
+                    }
+                }
+
+                @Override
+                public void onConfigureFailed(CameraCaptureSession session) {
+                    Toast.makeText(context, "创建相机预览失败", 
+                        Toast.LENGTH_SHORT).show();
+                }
+            }, backgroundHandler);
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "创建预览会话失败", e);
+        }
+    }
+
+    private void updatePreview() {
+        if (backCamera == null || backSession == null) return;
+
+        try {
+            if (hasFlash) {
+                backPreviewBuilder.set(CaptureRequest.FLASH_MODE,
+                    isFlashOn ? CaptureRequest.FLASH_MODE_TORCH : 
+                               CaptureRequest.FLASH_MODE_OFF);
+            }
+            mPreviewRequest = backPreviewBuilder.build();
+            backSession.setRepeatingRequest(mPreviewRequest, null, backgroundHandler);
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "更新预览失败", e);
+        }
+    }
+
+    public void setFrontZoom(float zoom) {
+        if (frontCamera == null || frontSensorSize == null || frontSession == null) {
+            Toast.makeText(context, "前置相机未就绪", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        frontCurrentZoom = Math.max(1.0f, Math.min(zoom, frontMaxZoom));
+        updateZoom(true);
+    }
+
+    public void setBackZoom(float zoom) {
+        if (backCamera == null || backSensorSize == null || backSession == null) {
+            Toast.makeText(context, "后置相机未就绪", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        backCurrentZoom = Math.max(1.0f, Math.min(zoom, backMaxZoom));
+        updateZoom(false);
+    }
+
+    private void updateZoom(final boolean isFront) {
+        try {
+            final CameraDevice camera = isFront ? frontCamera : backCamera;
+            final CameraCaptureSession session = isFront ? frontSession : backSession;
+            final Rect sensorSize = isFront ? frontSensorSize : backSensorSize;
+            final float currentZoom = isFront ? frontCurrentZoom : backCurrentZoom;
+            final Surface previewSurface = isFront ? frontPreviewSurface : backPreviewSurface;
+            
+            if (camera == null || session == null || sensorSize == null || 
+                    previewSurface == null) {
+                Toast.makeText(context, 
+                    (isFront ? "前置" : "后置") + "相机未就绪", 
+                    Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            CaptureRequest.Builder builder = camera.createCaptureRequest(
+                CameraDevice.TEMPLATE_PREVIEW);
+            builder.addTarget(previewSurface);
+            
+            Rect zoomRect = getZoomRect(sensorSize, currentZoom);
+            builder.set(CaptureRequest.SCALER_CROP_REGION, zoomRect);
+
+            if (!isFront && hasFlash) {
+                builder.set(CaptureRequest.FLASH_MODE,
+                    isFlashOn ? CaptureRequest.FLASH_MODE_TORCH : 
+                               CaptureRequest.FLASH_MODE_OFF);
+            }
+            
+            session.setRepeatingRequest(builder.build(), null, backgroundHandler);
+            
+            Toast.makeText(context, String.format(Locale.getDefault(), 
+                "%s摄像头变焦: %.1f", isFront ? "前置" : "后置", currentZoom), 
+                Toast.LENGTH_SHORT).show();
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "设置变焦失败", e);
+            Toast.makeText(context, "设置变焦失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private Rect getZoomRect(Rect sensorSize, float zoomLevel) {
+        int centerX = sensorSize.width() / 2;
+        int centerY = sensorSize.height() / 2;
+        int deltaX = (int)((0.5f * sensorSize.width()) / zoomLevel);
+        int deltaY = (int)((0.5f * sensorSize.height()) / zoomLevel);
+        
+        return new Rect(
+            centerX - deltaX,
+            centerY - deltaY,
+            centerX + deltaX,
+            centerY + deltaY
+        );
+    }
+
+    public void takeFrontPhoto() {
+        if (frontCamera == null) {
+            Toast.makeText(context, "前置相机未就绪", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        takePicture(frontCamera, true);
+    }
+
+    public void takeBackPhoto() {
+        if (backCamera == null) {
+            Toast.makeText(context, "后置相机未就绪", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        takePicture(backCamera, false);
+    }
+
+    public void takeBothPhotos() {
+        if (frontCamera != null) {
+            takePicture(frontCamera, true);
+        } else {
+            Toast.makeText(context, "前置相机未就绪", Toast.LENGTH_SHORT).show();
+        }
+        
+        if (backCamera != null) {
+            takePicture(backCamera, false);
+        } else {
+            Toast.makeText(context, "后置相机未就绪", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void takePicture(final CameraDevice camera, final boolean isFront) {
+        try {
+            final ImageReader reader = isFront ? frontImageReader : backImageReader;
+            final Surface previewSurface = isFront ? frontPreviewSurface : backPreviewSurface;
+            final CameraCaptureSession captureSession = isFront ? frontSession : backSession;
+            final Rect sensorSize = isFront ? frontSensorSize : backSensorSize;
+            final float currentZoom = isFront ? frontCurrentZoom : backCurrentZoom;
+
+            if (camera == null || captureSession == null || reader == null || 
+                previewSurface == null || sensorSize == null) {
+                Toast.makeText(context, 
+                    (isFront ? "前置" : "后置") + "相机未就绪", 
+                    Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 拍照请求
+            final CaptureRequest.Builder captureBuilder = 
+                camera.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
+            captureBuilder.addTarget(reader.getSurface());
+            
+            // 设置基本参数
+            captureBuilder.set(CaptureRequest.CONTROL_MODE,
+                CaptureRequest.CONTROL_MODE_AUTO);
+            captureBuilder.set(CaptureRequest.CONTROL_AF_MODE,
+                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
+            
+            // 设置闪光灯
+            if (!isFront && hasFlash) {
+                captureBuilder.set(CaptureRequest.FLASH_MODE,
+                    isFlashOn ? CaptureRequest.FLASH_MODE_TORCH : 
+                               CaptureRequest.FLASH_MODE_OFF);
+            }
+
+            // 设置变焦
+            captureBuilder.set(CaptureRequest.SCALER_CROP_REGION,
+                getZoomRect(sensorSize, currentZoom));
+
+            // 拍照
+            captureSession.stopRepeating();
+            captureSession.capture(captureBuilder.build(), 
+                new CameraCaptureSession.CaptureCallback() {
+                    @Override
+                    public void onCaptureCompleted(CameraCaptureSession session,
+                            CaptureRequest request, TotalCaptureResult result) {
+                        try {
+                            // 恢复预览
+                            final CaptureRequest.Builder previewBuilder = 
+                                camera.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+                            previewBuilder.addTarget(previewSurface);
+                            previewBuilder.set(CaptureRequest.SCALER_CROP_REGION,
+                                getZoomRect(sensorSize, currentZoom));
+                            
+                            if (!isFront && hasFlash) {
+                                previewBuilder.set(CaptureRequest.FLASH_MODE,
+                                    isFlashOn ? CaptureRequest.FLASH_MODE_TORCH : 
+                                               CaptureRequest.FLASH_MODE_OFF);
+                            }
+                            
+                            session.setRepeatingRequest(previewBuilder.build(), 
+                                null, backgroundHandler);
+                        } catch (CameraAccessException e) {
+                            Log.e(TAG, "恢复预览失败", e);
+                        }
+                    }
+
+                    @Override
+                    public void onCaptureFailed(CameraCaptureSession session,
+                            CaptureRequest request, CaptureFailure failure) {
+                        String reason = "";
+                        switch (failure.getReason()) {
+                            case CaptureFailure.REASON_ERROR:
+                                reason = "发生错误";
+                                break;
+                            case CaptureFailure.REASON_FLUSHED:
+                                reason = "请求被取消";
+                                break;
+                            default:
+                                reason = "未知原因";
+                        }
+                        Toast.makeText(context, "拍照失败: " + reason, 
+                            Toast.LENGTH_SHORT).show();
+                    }
+                }, 
+                backgroundHandler);
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "拍照失败", e);
+            Toast.makeText(context, "拍照失败: " + e.getMessage(), 
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void save(byte[] bytes, boolean isFront) {
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", 
+            Locale.getDefault()).format(new Date());
+        String filename = (isFront ? "front_" : "back_") + timestamp + ".jpg";
+        File file = new File(SAVE_PATH + filename);
+        
+        try (FileOutputStream output = new FileOutputStream(file)) {
+            output.write(bytes);
+            Toast.makeText(context, "照片已保存: " + file.getPath(), 
+                Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.e(TAG, "保存照片失败", e);
+            Toast.makeText(context, "保存照片失败: " + e.getMessage(), 
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void toggleFlash() {
+        if (!hasFlash) {
+            Toast.makeText(context, "此设备不支持闪光灯", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (backCamera == null || backSession == null) {
+            Toast.makeText(context, "后置相机未就绪", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            isFlashOn = !isFlashOn;
+            updatePreview();
+            Toast.makeText(context, isFlashOn ? "闪光灯已开启" : "闪光灯已关闭", 
+                Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(TAG, "闪光灯控制失败", e);
+            Toast.makeText(context, "闪光灯控制失败: " + e.getMessage(), 
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void releaseCamera() {
+        try {
+            isCameraInitialized = false;
+            cameraOpenCloseLock.acquire();
+            
+            if (frontSession != null) {
+                frontSession.close();
+                frontSession = null;
+            }
+            if (backSession != null) {
+                backSession.close();
+                backSession = null;
+            }
+            if (frontCamera != null) {
+                frontCamera.close();
+                frontCamera = null;
+            }
+            if (backCamera != null) {
+                backCamera.close();
+                backCamera = null;
+            }
+            if (frontImageReader != null) {
+                frontImageReader.close();
+                frontImageReader = null;
+            }
+            if (backImageReader != null) {
+                backImageReader.close();
+                backImageReader = null;
+            }
+            
+            if (backgroundThread != null) {
+                backgroundThread.quitSafely();
+                try {
+                    backgroundThread.join();
+                    backgroundThread = null;
+                    backgroundHandler = null;
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "停止后台线程失败", e);
+                }
+            }
+        } catch (InterruptedException e) {
+            Log.e(TAG, "相机关闭中断", e);
+            throw new RuntimeException("相机关闭中断", e);
+        } finally {
+            cameraOpenCloseLock.release();
+        }
+    }
+
+    public void onResume() {
+        startBackgroundThread();
+        setupImageReaders();
+        if (cachedFrontHolder != null || cachedBackHolder != null) {
+            initializeCameras();
+        }
+    }
+
+    public void onPause() {
+        releaseCamera();
+    }
+}
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/handlers/SensorHandler.java
+
+package com.example.aabbg.handlers;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.widget.TextView;
+
+import java.util.Locale;
+
+public class SensorHandler implements SensorEventListener {
+    private SensorManager sensorManager;
+    private TextView textView;
+    private Sensor accelerometer;
+    private StringBuilder sensorData;
+    private float[] lastAcceleration = new float[3];
+    private static final float FILTER_FACTOR = 0.1f;
+    
+    public SensorHandler(Context context, TextView textView) {
+        this.textView = textView;
+        this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        this.accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        this.sensorData = new StringBuilder();
+    }
+    
+    public void startSensorMonitoring() {
+        if (sensorManager != null && accelerometer != null) {
+            sensorManager.registerListener(this, accelerometer, 
+                SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+    
+    public void stopSensorMonitoring() {
+        if (sensorManager != null) {
+            sensorManager.unregisterListener(this);
+        }
+    }
+    
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            // 应用低通滤波器来平滑数据
+            for (int i = 0; i < 3; i++) {
+                lastAcceleration[i] = lastAcceleration[i] + FILTER_FACTOR * 
+                    (event.values[i] - lastAcceleration[i]);
+            }
+            
+            sensorData.setLength(0);
+            sensorData.append("加速度传感器 (m/s²):\n");
+            sensorData.append(String.format(Locale.getDefault(),
+                "X: %.1f\nY: %.1f\nZ: %.1f",
+                lastAcceleration[0], lastAcceleration[1], lastAcceleration[2]));
+            
+            textView.post(new Runnable() {
+                @Override
+                public void run() {
+                    textView.setText(sensorData.toString());
+                }
+            });
+        }
+    }
+    
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+}
+
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/handlers/LocationHandler.java
+package com.example.aabbg.handlers;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class LocationHandler {
+    private Context context;
+    private TextView txtLocation;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private boolean isUpdating = false;
+
+    public LocationHandler(Context context, TextView txtLocation) {
+        this.context = context;
+        this.txtLocation = txtLocation;
+        this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        
+        initLocationListener();
+    }
+
+    private void initLocationListener() {
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                updateLocationInfo(location);
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                txtLocation.setText("位置服务已启用");
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                txtLocation.setText("位置服务已禁用");
+            }
+        };
+    }
+
+    public void startLocationUpdates() {
+        if (isUpdating) {
+            return;
+        }
+
+        if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != 
+            PackageManager.PERMISSION_GRANTED) {
+            txtLocation.setText("需要定位权限");
+            return;
+        }
+
+        // 尝试获取最后一次已知位置
+        Location lastLocation = null;
+        try {
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            if (lastLocation == null && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+
+        if (lastLocation != null) {
+            updateLocationInfo(lastLocation);
+        }
+
+        try {
+            // 同时使用GPS和网络定位
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER, 
+                    1000, // 1秒更新一次
+                    1,    // 1米更新一次
+                    locationListener
+                );
+            }
+            
+            if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                locationManager.requestLocationUpdates(
+                    LocationManager.NETWORK_PROVIDER, 
+                    1000,
+                    1,
+                    locationListener
+                );
+            }
+            
+            isUpdating = true;
+            txtLocation.setText("正在获取位置...");
+        } catch (SecurityException e) {
+            Toast.makeText(context, "启动定位失败", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    public void stopLocationUpdates() {
+        if (!isUpdating) {
+            return;
+        }
+        
+        try {
+            locationManager.removeUpdates(locationListener);
+            isUpdating = false;
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateLocationInfo(Location location) {
+        if (location != null) {
+            StringBuilder info = new StringBuilder();
+            info.append("位置信息:\n");
+            info.append("纬度: ").append(String.format("%.6f", location.getLatitude())).append("\n");
+            info.append("经度: ").append(String.format("%.6f", location.getLongitude())).append("\n");
+            info.append("精确度: ").append(String.format("%.1f米", location.getAccuracy())).append("\n");
+            
+            if (location.hasAltitude()) {
+                info.append("海拔: ").append(String.format("%.1f米", location.getAltitude())).append("\n");
+            }
+            
+            if (location.hasSpeed()) {
+                info.append("速度: ").append(String.format("%.1f米/秒", location.getSpeed())).append("\n");
+            }
+            
+            info.append("提供者: ").append(location.getProvider());
+            
+            txtLocation.setText(info.toString());
+        }
+    }
+}
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/handlers/BluetoothHandler.java
+
+package com.example.aabbg.handlers;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothClass;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.widget.TextView;
+import android.widget.Toast;
+import java.util.HashSet;
+import java.util.Set;
+
+public class BluetoothHandler {
+    private final Context context;
+    private final BluetoothAdapter bluetoothAdapter;
+    private final TextView txtBluetoothResults;
+    private final BroadcastReceiver bluetoothReceiver;
+    private final Set<String> discoveredDevices;
+    private boolean isScanning = false;
+
+    public BluetoothHandler(Context context, TextView txtBluetoothResults) {
+        this.context = context;
+        this.txtBluetoothResults = txtBluetoothResults;
+        this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        this.discoveredDevices = new HashSet<>();
+
+        final TextView finalTxtBluetoothResults = txtBluetoothResults;
+        final Set<String> finalDiscoveredDevices = discoveredDevices;
+
+        this.bluetoothReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    if (device != null && !finalDiscoveredDevices.contains(device.getAddress())) {
+                        finalDiscoveredDevices.add(device.getAddress());
+                        updateBluetoothResults(device, intent);
+                    }
+                } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                    isScanning = false;
+                    finalTxtBluetoothResults.append("\n扫描完成，共发现 " + 
+                        finalDiscoveredDevices.size() + " 个设备");
+                }
+            }
+        };
+    }
+
+    public void startBluetoothScan() {
+        if (isScanning) {
+            Toast.makeText(context, "正在扫描中，请稍候...", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (bluetoothAdapter == null) {
+            Toast.makeText(context, "设备不支持蓝牙", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!bluetoothAdapter.isEnabled()) {
+            Toast.makeText(context, "正在开启蓝牙...", Toast.LENGTH_SHORT).show();
+            bluetoothAdapter.enable();
+            return;
+        }
+
+        discoveredDevices.clear();
+        txtBluetoothResults.setText("正在扫描蓝牙设备...\n\n");
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        context.registerReceiver(bluetoothReceiver, filter);
+
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        if (!pairedDevices.isEmpty()) {
+            txtBluetoothResults.append("已配对设备：\n\n");
+            for (BluetoothDevice device : pairedDevices) {
+                discoveredDevices.add(device.getAddress());
+                updateBluetoothResults(device, null);
+            }
+            txtBluetoothResults.append("\n正在搜索新设备...\n\n");
+        }
+
+        if (bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+        }
+
+        isScanning = bluetoothAdapter.startDiscovery();
+        if (!isScanning) {
+            Toast.makeText(context, "启动扫描失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void updateBluetoothResults(BluetoothDevice device, Intent intent) {
+        StringBuilder deviceInfo = new StringBuilder();
+        
+        String deviceName = device.getName();
+        deviceInfo.append("设备名称: ")
+                 .append(deviceName != null ? deviceName : "未知设备")
+                 .append("\n");
+
+        deviceInfo.append("MAC地址: ")
+                 .append(device.getAddress())
+                 .append("\n");
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            deviceInfo.append("设备类型: ")
+                     .append(getDeviceType(device))
+                     .append("\n");
+        }
+
+        deviceInfo.append("配对状态: ")
+                 .append(getBondState(device))
+                 .append("\n");
+
+        if (intent != null) {
+            int rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE);
+            if (rssi != Short.MIN_VALUE) {
+                deviceInfo.append("信号强度: ")
+                         .append(rssi)
+                         .append(" dBm (")
+                         .append(getRssiLevel(rssi))
+                         .append(")\n");
+            }
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            int deviceClass = device.getBluetoothClass().getMajorDeviceClass();
+            deviceInfo.append("设备类别: ")
+                     .append(getDeviceClass(deviceClass))
+                     .append("\n");
+        }
+
+        deviceInfo.append("\n");
+        txtBluetoothResults.append(deviceInfo.toString());
+    }
+
+    private String getDeviceType(BluetoothDevice device) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            switch (device.getType()) {
+                case BluetoothDevice.DEVICE_TYPE_CLASSIC:
+                    return "传统蓝牙";
+                case BluetoothDevice.DEVICE_TYPE_LE:
+                    return "低功耗蓝牙(BLE)";
+                case BluetoothDevice.DEVICE_TYPE_DUAL:
+                    return "双模蓝牙";
+                default:
+                    return "未知类型";
+            }
+        }
+        return "未知类型";
+    }
+
+    private String getBondState(BluetoothDevice device) {
+        switch (device.getBondState()) {
+            case BluetoothDevice.BOND_BONDED:
+                return "已配对";
+            case BluetoothDevice.BOND_BONDING:
+                return "正在配对";
+            case BluetoothDevice.BOND_NONE:
+                return "未配对";
+            default:
+                return "未知状态";
+        }
+    }
+
+    private String getRssiLevel(int rssi) {
+        if (rssi >= -50) return "信号极好 ★★★★★";
+        else if (rssi >= -60) return "信号良好 ★★★★☆";
+        else if (rssi >= -70) return "信号一般 ★★★☆☆";
+        else if (rssi >= -80) return "信号较差 ★★☆☆☆";
+        else return "信号很差 ★☆☆☆☆";
+    }
+
+    private String getDeviceClass(int deviceClass) {
+        switch (deviceClass) {
+            case BluetoothClass.Device.Major.AUDIO_VIDEO:
+                return "音频设备";
+            case BluetoothClass.Device.Major.COMPUTER:
+                return "电脑";
+            case BluetoothClass.Device.Major.HEALTH:
+                return "健康设备";
+            case BluetoothClass.Device.Major.IMAGING:
+                return "图像设备";
+            case BluetoothClass.Device.Major.MISC:
+                return "其他设备";
+            case BluetoothClass.Device.Major.NETWORKING:
+                return "网络设备";
+            case BluetoothClass.Device.Major.PERIPHERAL:
+                return "外围设备";
+            case BluetoothClass.Device.Major.PHONE:
+                return "手机";
+            case BluetoothClass.Device.Major.TOY:
+                return "玩具";
+            case BluetoothClass.Device.Major.WEARABLE:
+                return "可穿戴设备";
+            default:
+                return "未知类别";
+        }
+    }
+
+    public void stopBluetoothScan() {
+        if (bluetoothAdapter != null && bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+        }
+        
+        try {
+            context.unregisterReceiver(bluetoothReceiver);
+        } catch (IllegalArgumentException e) {
+            // 接收器可能未注册，忽略异常
+        }
+        
+        isScanning = false;
+    }
+
+    public boolean isScanning() {
+        return isScanning;
+    }
+}
+
+Apk编辑器/导入目录/SSS/10/aabbg/src/com/example/aabbg/handlers/WifiHandler.java
+package com.example.aabbg.handlers;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
+import android.widget.TextView;
+import android.widget.Toast;
+import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.ArrayList;
+
+public class WifiHandler {
+    private final Context context;
+    private final WifiManager wifiManager;
+    private final TextView txtWifiResults;
+    private final BroadcastReceiver wifiReceiver;
+    private boolean isScanning = false;
+
+    public WifiHandler(Context context, TextView txtWifiResults) {
+        this.context = context;
+        this.txtWifiResults = txtWifiResults;
+        this.wifiManager = (WifiManager) 
+            context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        
+        this.wifiReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(intent.getAction())) {
+                    boolean success = intent.getBooleanExtra(
+                        WifiManager.EXTRA_RESULTS_UPDATED, false);
+                    if (success) {
+                        updateWifiResults();
+                    } else {
+                        showToast("WiFi扫描失败，使用缓存结果");
+                        updateWifiResults(); // 使用缓存结果
+                    }
+                    isScanning = false;
+                }
+            }
+        };
+    }
+
+    private void showToast(final String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void startWifiScan() {
+        if (isScanning) {
+            showToast("正在扫描中，请稍候...");
+            return;
+        }
+
+        if (!wifiManager.isWifiEnabled()) {
+            showToast("正在开启WIFI...");
+            wifiManager.setWifiEnabled(true);
+        }
+
+        txtWifiResults.setText("正在扫描WIFI...\n请稍候...");
+        
+        try {
+            context.registerReceiver(wifiReceiver, 
+                new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+            
+            isScanning = true;
+            if (!wifiManager.startScan()) {
+                showToast("启动扫描失败，使用缓存结果");
+                updateWifiResults();
+                isScanning = false;
+            }
+        } catch (Exception e) {
+            showToast("扫描出错: " + e.getMessage());
+            isScanning = false;
+        }
+    }
+
+    private void updateWifiResults() {
+        List<ScanResult> results = wifiManager.getScanResults();
+        if (results == null) {
+            results = new ArrayList<>();
+        }
+
+        // 按信号强度排序
+        Collections.sort(results, new Comparator<ScanResult>() {
+            @Override
+            public int compare(ScanResult result1, ScanResult result2) {
+                return result2.level - result1.level;
+            }
+        });
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("发现 ").append(results.size()).append(" 个WIFI网络：\n\n");
+        
+        for (ScanResult result : results) {
+            // 计算信号强度等级 (0-4)
+            int level = WifiManager.calculateSignalLevel(result.level, 5);
+            
+            // 获取加密类型
+            String security = getSecurityType(result);
+            
+            // 获取频段
+            String band = result.frequency > 5000 ? "5GHz" : "2.4GHz";
+            
+            // 获取信道
+            int channel = getChannel(result.frequency);
+            
+            sb.append("名称: ").append(result.SSID.isEmpty() ? "<隐藏>" : result.SSID)
+              .append("\n信号强度: ").append(result.level).append(" dBm")
+              .append(" (").append(getSignalStrength(level)).append(")")
+              .append("\n频率: ").append(result.frequency).append(" MHz")
+              .append(" (").append(band).append(", CH").append(channel).append(")")
+              .append("\n加密类型: ").append(security)
+              .append("\nMAC地址: ").append(result.BSSID);
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                sb.append("\n运营商: ").append(result.venueName != null ? 
+                    result.venueName : "未知");
+            }
+            
+            sb.append("\n\n");
+        }
+        
+        txtWifiResults.setText(sb.toString());
+    }
+
+    private String getSecurityType(ScanResult scanResult) {
+        String capabilities = scanResult.capabilities;
+        if (capabilities.contains("WEP")) {
+            return "WEP";
+        } else if (capabilities.contains("WPA3")) {
+            return "WPA3";
+        } else if (capabilities.contains("WPA2")) {
+            if (capabilities.contains("PSK")) {
+                return "WPA2-Personal";
+            } else if (capabilities.contains("EAP")) {
+                return "WPA2-Enterprise";
+            }
+            return "WPA2";
+        } else if (capabilities.contains("WPA")) {
+            if (capabilities.contains("PSK")) {
+                return "WPA-Personal";
+            } else if (capabilities.contains("EAP")) {
+                return "WPA-Enterprise";
+            }
+            return "WPA";
+        } else {
+            return "开放";
+        }
+    }
+
+    private String getSignalStrength(int level) {
+        switch (level) {
+            case 4: return "极好 ★★★★★";
+            case 3: return "良好 ★★★★☆";
+            case 2: return "一般 ★★★☆☆";
+            case 1: return "较差 ★★☆☆☆";
+            default: return "很差 ★☆☆☆☆";
+        }
+    }
+
+    private int getChannel(int frequency) {
+        if (frequency >= 2412 && frequency <= 2484) {
+            return (frequency - 2412) / 5 + 1;
+        } else if (frequency >= 5170 && frequency <= 5825) {
+            return (frequency - 5170) / 5 + 34;
+        }
+        return -1;
+    }
+
+    public void stopWifiScan() {
+        try {
+            context.unregisterReceiver(wifiReceiver);
+        } catch (IllegalArgumentException e) {
+            // 接收器可能未注册，忽略异常
+        }
+        isScanning = false;
+    }
+
+    public boolean isScanning() {
+        return isScanning;
+    }
+}
