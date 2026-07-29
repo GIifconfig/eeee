@@ -1,3 +1,0 @@
-这是第二个文件夹内的文本文件。
-文件名：note2.txt
-内容随便写：Hello from note2.
